@@ -1,0 +1,7 @@
+vector:
+  repo: https://helm.vector.dev
+  chart: orange-vector
+  version: 0.38.0
+  values: helmValues/vector.yaml
+  historyMax: 2
+

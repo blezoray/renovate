@@ -1,0 +1,28 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard"
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "customManagers": [
+    {
+      "description": "helmRequirements file",
+      "customType": "regex",
+      "fileMatch": [
+        "openshift-deploy/.*/helmRequirements\\.y[a]*ml$"
+      ],
+      "matchStringsStrategy": "combination",
+      "matchStrings": [
+        "^(?<helmRelease>.+?):\\s+\\n",
+        "version:\\s+(?<currentValue>.*?)\\n",
+        "repo:\\s+(?<registryUrl>.*?)\\n",
+        "chart:\\s+(?<depName>.*?)\\n"
+      ],
+      "datasourceTemplate": "helm",
+      "versioningTemplate": "semver"
+    }
+  ]
+}
